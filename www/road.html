@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery.min.js" rel="" type="text/javascript"></script>
+        <script src="js/jquery.imagemapster.js" rel="" type="text/javascript"></script>
+        <script src="js/leaflet.js" rel="" type="text/javascript"></script>
+        <script src="js/BinaryTree.js" rel="" type="text/javascript"></script>
+        <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <link href="js/leaflet.css" type="text/css" rel="stylesheet"/>
+        <style>
+            html{
+                width: 90%;
+                padding: 5%;
+                background: #fff;
+            }
+            body{
+                width: 100%;
+                height: 100%;
+                background-color: #ccc;
+            }
+            .line
+            {
+                position:absolute;
+            }
+            #preload
+            {
+                height:0;
+                overflow:hidden;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <div class="col-xs-offset-4 col-xs-8" id="canvas">
+
+            <img src="images/route map.png" id="mapimage" usemap="#usa" style="width:100;height:650px; position: absolute">
+            <map id="usa_image_map" name="usa">
+                <area class="node" shape="poly" state="ST" full="Science and Technology Complex" alt="Science and Technology Complex" title="Science and Technology Complex" coords="14, 930, 32, 920, 48, 916, 84, 906, 124, 896, 156, 884, 188, 888, 204, 918, 204, 944, 204, 964, 178, 984, 138, 990, 86, 998, 64, 1006, 32, 1010, 26, 986" href="#" target="" />
+                <area class="node" shape="poly" state="BU" full="Busary" alt="Busary" title="Busary" coords="506, 1237, 532, 1223, 552, 1229, 562, 1243, 566, 1269, 568, 1289, 572, 1321, 574, 1345, 574, 1361, 554, 1365, 522, 1359, 516, 1335, 512, 1303, 510, 1279, 506, 1253, 504, 1247" href="#" target="" />
+                <area class="node" shape="poly"   state="ME" full="Medical Center" alt="Medical Center" title="Medical Center" coords="1384, 154, 1410, 134, 1478, 190, 1486, 194, 1488, 240, 1470, 272, 1448, 270, 1434, 254, 1410, 240, 1402, 224, 1388, 208, 1382, 158" href="#" target=""/>
+                <area class="node" shape="rect" state="CI" full="CITM/Zenith Bank" alt="CITM/Zenith Bank" title="CITM/Zenith Bank" coords="276, 902, 360, 1016" href="#" target=""/>
+                <area class="node" shape="rect" state="AB" full="Art Building" alt="Art Building" title="Art Building" coords="460, 862, 602, 1022" href="#" target=""/>
+                <area class="node" shape="rect"  state="MS" full="Mass Com" alt="Mass Com" title="Mass Com" coords="232, 749, 414, 844" href="#" target=""/>
+                <area class="node" shape="rect" state="MF" full="Microfinance" alt="Microfinance" title="Microfinance" coords="216, 1080, 426, 1194" href="#" target=""/>
+                <area class="node" shape="rect" state="LI" full="Library" alt="Library" title="Library" coords="630, 1036, 764, 1168" href="#" target=""/>
+                <area class="node" shape="rect" state="FT"  full="Food Tech Building/Back Gate" alt="Food Tech Building/Back Gate" title="Food Tech Building/Back Gate" coords="812, 992, 932, 1174" href="#" target=""/>
+                <area class="node" shape="rect" state="MP" full="Multipurpose" alt="Multipurpose" title="Multipurpose" coords="1188, 539, 1306, 697" href="#" target=""/>
+                <area class="node" shape="rect"  state="SC" full="Sport Complex"  alt="Sport Complex" title="Sport Complex" coords="634, 470, 992, 678" href="#" target=""/>
+                <area class="node" shape="poly"  state="AL" full="Alumni Building"  alt="Alumni Building" title="Alumni Building"  coords="832, 322, 860, 304, 858, 288, 888, 278, 906, 272, 930, 238, 964, 232, 992, 256, 992, 284, 988, 302, 982, 318, 966, 322, 950, 330, 924, 360, 910, 376, 898, 384, 868, 392, 838, 392, 824, 390, 820, 368, 816, 352, 816, 338" href="#" target=""/>
+                <area class="node" shape="rect" state="HW" full="Hollyword" alt="Hollyword" title="Hollyword" coords="1058, 148, 1212, 394" href="#" target=""/>
+                <area class="node" shape="rect" state="CO" full="Complex" alt="Complex" title="Complex" coords="764, 48, 852, 242" href="#" target=""/>
+                <area class="node" shape="rect" state="MG" full="Main Gate" alt="Main Gate" title="Main Gate" coords="80, 494, 182, 700" href="#" target=""/>
+                <area class="node" shape="rect" state="AK" full="Akata" alt="Akata" title="Akata"  coords="78, 250, 412, 388" href="#" target=""/>
+                <area class="node" shape="rect" state="FV" full="Food VilLage" alt="Food VilLage" title="Food VilLage" coords="456, 54, 622, 246" href="#" target=""/>
+
+
+
+                <area class="road" shape="poly" state="ABSC" full="Route 1" alt="Route 1" coords="677, 684, 687, 684, 545, 864, 531, 864" href="#" target="13" style="background: url(ant/ant.gif)"/>
+                <area class="road" shape="poly" state="ABMS"  full="Route 2" alt="Route 2" coords="413, 794, 413, 806, 481, 862, 491, 860" href="#" target="34"/>
+                <area class="road" shape="poly" state="MGAK"  full="Route 3"  alt="Route 3" coords="147, 492, 195, 386, 205, 386, 157, 492" href="#" target="12"/>
+                <area class="road" shape="poly" state="MGMS"  full="Route 4" alt="Route 4" coords="181, 616, 313, 748, 295, 748, 183, 638" href="#" target="32"/>
+                <area class="road" shape="poly" state="ABCI"  full="Route 5" alt="Route 5" coords="361, 946, 361, 958, 461, 958, 459, 946" href="#" target="24"/>
+                <area class="road" shape="poly" state="STMS"  full="Route 6" alt="Route 6" coords="123, 882, 233, 802, 233, 814, 131, 884" href="#" target="32"/>
+                <area class="road" shape="poly" state="STCI"  full="Route 7" alt="Route 7" coords="209, 954, 277, 960, 277, 972, 203, 962" href="#" target="11"/>
+                <area class="road" shape="poly" state="MFCI"  full="Route 8" alt="Route 8" coords="305, 1016, 315, 1016, 313, 1082, 305, 1082" href="#" target="23"/>
+                <area class="road" shape="poly" state="BUMF"  full="Route 9" alt="Route 9" coords="425, 1154, 511, 1284, 507, 1292, 423, 1168" href="#" target="16"/>
+                <area class="road" shape="poly" state="BULI"  full="Route 10" alt="Route 10" coords="569, 1268, 571, 1274, 679, 1170, 667, 1168" href="#" target="20"/>
+                <area class="road" shape="poly" state="MFLI"  full="Route 11" alt="Route 11" coords="425, 1120, 425, 1130, 629, 1130, 629, 1120" href="#" target="30"/>
+                <area class="road" shape="poly" state="ABLI"  full="Route 12" alt="Route 12" coords="695, 1038, 701, 1036, 603, 938, 603, 948" href="#" target="10"/>
+                <area class="road" shape="poly" state="FTLI"  full="Route 13" alt="Route 13" coords="767, 1073, 767, 1079, 813, 1077, 813, 1069" href="#" target="18"/>
+                <area class="road" shape="poly" state="FTMP"  full="Route 14" alt="Route 14" coords="933, 1055, 933, 1061, 1217, 699, 1207, 699" href="#" target="28"/>
+                <area class="road" shape="poly" state="HWME"  full="Route 15" alt="Route 15" coords="1214, 243, 1214, 251, 1434, 251, 1430, 245" href="#" target="29"/>
+                <area class="road" shape="poly" state="MPME"  full="Route 16" alt="Route 16" coords="1280, 537, 1448, 269, 1444, 265, 1270, 537" href="#" target="19"/>
+                <area class="road" shape="poly" state="MPHW"  full="Route 17" alt="Route 17" coords="1194, 393, 1200, 393, 1258, 539, 1252, 539" href="#" target="40"/>
+                <area class="road" shape="poly" state="HWAL"  full="Route 18" alt="Route 18" coords="945, 367, 945, 373, 1061, 369, 1061, 363" href="#" target="20"/>
+                <area class="road" shape="poly" state="COAL"  full="Route 19" alt="Route 19" coords="853, 187, 853, 179, 931, 273, 927, 277" href="#" target="30"/>
+                <area class="road" shape="poly" state="SCCO"  full="Route 20" alt="Route 20" coords="779, 245, 787, 245, 789, 467, 781, 465" href="#" target="32"/>
+                <area class="road" shape="poly" state="AKCO"  full="Route 21" alt="Route 21" coords="414, 377, 414, 383, 760, 237, 760, 227" href="#" target="16"/>
+                <area class="road" shape="poly" state="COFV"  full="Route 22" alt="Route 22" coords="624, 137, 624, 143, 760, 143, 760, 137" href="#" target="41"/>
+                <area class="road" shape="poly" state="AKFV"  full="Route 23" alt="Route 23" coords="292, 247, 304, 245, 460, 179, 460, 169" href="#" target="19"/>
+
+
+            </map>
+
+            <button type="button" id="calculate">Ant Colony Route</button>
+
+            <div>
+                <script>
+                   
+                </body>
+                </html>

@@ -1,0 +1,107 @@
+<script src="js/jquery.min.js" rel="" type="text/javascript"></script>
+
+<!--just a container used to position in the page-->
+<div class="container">
+    <!--the holders for the text, reuse as desired-->
+    <div class="circTxt" id="test"></div>
+
+</div>
+<!--just a container used to position in the page-->
+<div class="container">
+    <!--the holders for the text, reuse as desired-->
+    <div class="circTxt" id="shadow"></div>
+    <div class="circTxt" id="cursive"></div>
+    <div class="circTxt" id="blue"></div>
+</div>
+
+<div class="container">
+    <div class="circTxt" id="green"></div>
+</div>
+
+<div class="container">
+    <div class="circTxt" id="spokes"></div>
+    <div class="circTxt" id="stars"></div>
+</div>
+<script>
+    function circularText(txt, radius, classIndex) {
+        txt = txt.split(""),
+        classIndex = document.getElementsByClassName("circTxt")[classIndex];
+
+        var deg = 360 / txt.length,
+        origin = 0;
+
+        $.each(txt, function(id,ea){
+            ea = "<p style='height:"+radius+"px;position:absolute;transform:rotate("+origin+"deg);transform-origin:0 100%'>"+ea+"</p>";
+            classIndex.innerHTML += ea;
+            origin += deg;
+        })
+    }
+
+circularText("shadow circular text ", 100, 0);
+circularText("cursive in a circle ", 50, 1);
+circularText("*************************", 32, 2);
+circularText("0 1 2 3 4 5 6 7 8 9 ", 75, 3);
+circularText("                                                         ", 90, 4);
+circularText("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆", 64, 5);
+    
+</script>
+<style>
+
+    body {
+        background: whitesmoke;
+    }
+
+    .container {
+        /*centers in the container*/
+        text-align: center;
+    }
+
+    div.circTxt {
+        /*allows for centering*/
+        display: inline-block;
+        /*adjust as needed*/
+        margin-bottom: 128px;
+        color: #333;
+        position:relative;
+    }
+
+    #shadow {
+        font-size:28px;
+        font-weight:bold;
+        text-shadow:0 4px 8px #666, 0 6px 16px #999;
+    }
+
+    #cursive {
+        font-family:homemade apple, cursive;
+        top:32px;
+        left:-150px;
+    }
+
+    #blue {
+        color:blue;
+        font-family:tahoma;
+        font-weight:bold;
+        top:50px;
+        left: 150px;
+    }
+    #blue p {
+        border:1px solid blue;
+    }
+
+    #green {
+        color:lime;
+        font-size:32px;
+        font-weight:bold;
+        text-shadow:1px 1px 0 black, -1px -1px 0 black;
+        top:40px;
+        left:-150px;
+    }
+
+    #spokes {
+        top:-64px;
+        left:118px;
+    }
+    #spokes p {
+        border:1px solid red;
+    }
+</style>>
